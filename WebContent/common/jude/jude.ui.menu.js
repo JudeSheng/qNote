@@ -18,9 +18,12 @@
 			$('.jd-menu-tree').find('li').unbind('click').click(function(){
 				var $item = $(this);
 				if($item.next()[0] && $item.next()[0].localName == 'ul') {
-					$('.jd-menu-tree').find('ul').find('ul').find('li').hide();
-					$item.next().find('li').slideDown();
-					$item.next().find('ul').find('li').hide();
+					var isHide = $item.next().find('li').css('display')=='none'?true:false;
+					if(isHide){
+						$('.jd-menu-tree').find('ul').find('ul').find('li').hide();
+						$item.next().find('li').slideDown();
+						$item.next().find('ul').find('li').hide();
+					}
 					var $parentMenu = $item;
 					var parentText = null;
 					while(true) {
@@ -40,7 +43,7 @@
 					}
 				}
 			});
-		}
+		};
 		
 		if(menuObject != undefined) {
 			createMenu(menuObject);
@@ -49,4 +52,4 @@
 			bindClickMenu();
 		}
 	};
-})(jQuery)
+})(jQuery);
